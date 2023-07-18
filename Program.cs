@@ -4,49 +4,69 @@ using System.Collections.Generic;
 
 namespace Assisgnment_08
 {
-    public class Salary
-    {
-        public static int Calculator(string Emp, int wHour, int nWdays, int projectHandle = 1, int extra = 0)
+    public class SalaryCalculator
         {
-            int baseSalary = wHour * nWdays;
-            int projectBonus = projectHandle * 3000;
-            int extraBous = extra * 2000;
-            int salry = baseSalary + projectBonus + extraBous;
-            switch (Emp)
+            public static int CalculateSalary(string employeeType, int workingHours, int numberOfWorkingDays, int projectHandles = 1, int extras = 0)
             {
-                case "HR":
-                    salry += 0;
-                    break;
-                case "Admin":
-                    salry += projectBonus;
-                    break;
-                case "SE":
-                    baseSalary += extraBous;
-                    break;
-                default:
-                    throw new Exception("Please Enter");
+                int baseSalary = workingHours * numberOfWorkingDays * 100;
+                int projectHandlesBonus = projectHandles * 3000;
+                int extrasBonus = extras * 2000;
+
+                int salary = baseSalary + projectHandlesBonus + extrasBonus;
+
+                switch (employeeType)
+                {
+                    case "HR":
+                        salary += 0;
+                        break;
+                    case "Admin":
+                        salary += projectHandlesBonus;
+                        break;
+                    case "Software Developer":
+                        salary += extrasBonus;
+                        break;
+                    default:
+                        throw new Exception("Invalid employee type");
+                }
+
+                return salary;
             }
-            return salry;
 
-        }
-
-        internal class Program
-        {
-            static void Main(string[] args)
+            public static void Main()
             {
-                
-                int salry = Calculator("HR", 8, 20);
-                Console.WriteLine("the Salary for HR is: "+salry);
+                string employeeType;
+                int workingHours;
+                int numberOfWorkingDays;
 
-                salry = Calculator("Admin", 8, 20,2);
-                Console.WriteLine("the Salary for Admin is: " + salry);
+                try
+                {
+                    Console.WriteLine("Enter employee type: ");
+                    employeeType = Console.ReadLine();
 
-                salry = Calculator("SE", 8, 20,1,1000);
-                Console.WriteLine("the Salary for SE is: " + salry);
-                Console.ReadKey();
+                    Console.WriteLine("Enter working hours: ");
+                    workingHours = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine("Enter number of working days: ");
+                    numberOfWorkingDays = int.Parse(Console.ReadLine());
+
+          
+
+                    int salary = CalculateSalary(employeeType, workingHours, numberOfWorkingDays);
+
+                    Console.WriteLine("The salary for the employee is: " + salary);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Emp Not Found");
+                }
+            Console.ReadKey();
             }
-            
         }
-       
     }
+
+   
+
+       
+       
+    
 }
