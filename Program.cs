@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConAppAssignment8
+namespace Assignment
 {
     internal class Program
     {
